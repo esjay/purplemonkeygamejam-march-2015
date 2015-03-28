@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!this.gameStarted 
-		    && Input.GetKeyDown (KeyCode.Space)
+//		    && Input.GetKeyDown (KeyCode.Space)
 		    && (Time.time - this.timeSinceLevelChange) > introDelay) {
 			this.startNewLevel();
 		}
