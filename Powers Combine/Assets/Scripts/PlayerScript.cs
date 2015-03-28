@@ -51,13 +51,16 @@ public class PlayerScript : MonoBehaviour {
 		Vector2 next = GetComponent<Rigidbody2D>().position + movement;
 		GetComponent<Rigidbody2D>().MovePosition(next);	
 		
-		applyAnimationFromMovement (-w, -h);
+//		applyAnimationFromMovement (-w, -h);
 
 		// Player Direction
 		float x = Input.GetAxis ("Player" + this.playerNumber + "_AimHorizontal");
 		float y = Input.GetAxis ("Player" + this.playerNumber + "_AimVertical");
-		Debug.Log (x + ", " + y);
-		transform.rotation = Quaternion.Euler(0f,0f,Mathf.Atan2(x,y)*Mathf.Rad2Deg);
+//		Debug.Log (x + ", " + y);
+		if (Mathf.Abs(x) > 0.01 && Mathf.Abs (y) > 0.01) {
+			transform.rotation = Quaternion.Euler (0f, 0f, Mathf.Atan2 (x, y) * Mathf.Rad2Deg);
+			Debug.Log (transform.rotation);
+		}
 	}
 
 	void doActions () {
