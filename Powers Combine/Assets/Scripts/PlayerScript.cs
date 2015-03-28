@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 
-	public string playerControllerPrefix;
+	public int playerNumber;
 	public float maxSpeed = 0.1f;
 	private Animator animator;
 	private Vector2 lastPos;
@@ -22,7 +22,6 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.playerControllerPrefix = "Player1_"; // TEMP
 		animator = this.GetComponent<Animator>();
 		lastPos = GetComponent<Rigidbody2D>().position;
 		this.fist = (GameObject)Instantiate (fistPrefab);
@@ -36,8 +35,10 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void doMovement () {
-		float w = Input.GetAxis (this.playerControllerPrefix + "Horizontal");
-		float h = Input.GetAxis (this.playerControllerPrefix + "Vertical");
+		Debug.Log ("Player" + this.playerNumber + "_Horizontal");
+		float w = Input.GetAxis ("Player" + this.playerNumber + "_Horizontal");
+		float h = Input.GetAxis ("Player" + this.playerNumber + "_Vertical");
+		Debug.Log (w + ", " + h);
 		float distance = Mathf.Sqrt (Mathf.Pow (h, 2) + Mathf.Pow (w, 2));
 		float direction = Mathf.Atan2 (h, w);
 		
@@ -52,30 +53,30 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void doActions () {
-		bool isPunching;
-		bool isPunchRequested;
-		bool isStateChange;
-
-		isPunchRequested = Input.GetKeyDown (KeyCode.Space);
-		if (!this.isPunching && isPunchRequested) {
-			this.isPunching = true;
-			this.beginPunch ();
-			this.punchingSince = Time.frameCount;
-			applyAnimationFromState(true);
-		}
-
-		int punchingFor = 0;
-		if (this.isPunching) {
-			punchingFor = Time.frameCount - this.punchingSince;
-		}
-
-		if (punchingFor > this.punchDuration) {
-			this.endPunch ();
-			applyAnimationFromState(false);
-		}
-		if (punchingFor > this.coolDownDuration) {
-			this.isPunching = false;
-		}
+//		bool isPunching;
+//		bool isPunchRequested;
+//		bool isStateChange;
+//
+//		isPunchRequested = Input.GetKeyDown (KeyCode.Space);
+//		if (!this.isPunching && isPunchRequested) {
+//			this.isPunching = true;
+//			this.beginPunch ();
+//			this.punchingSince = Time.frameCount;
+//			applyAnimationFromState(true);
+//		}
+//
+//		int punchingFor = 0;
+//		if (this.isPunching) {
+//			punchingFor = Time.frameCount - this.punchingSince;
+//		}
+//
+//		if (punchingFor > this.punchDuration) {
+//			this.endPunch ();
+//			applyAnimationFromState(false);
+//		}
+//		if (punchingFor > this.coolDownDuration) {
+//			this.isPunching = false;
+//		}
 	}
 
 	void beginPunch () {

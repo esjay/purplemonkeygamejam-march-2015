@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour {
 	public float introDelay;
 
 	public List<GameObject> peopleRefs;
-	public GameObject player;
+	public GameObject player1;
+	public GameObject player2;
 	public GameObject werewolf;
 
 	// Various variables
@@ -59,7 +60,8 @@ public class GameManager : MonoBehaviour {
 	private void startNewLevel (){
 		this.clearScreen ();
 
-		this.spawnPlayer();
+		this.spawnPlayer(this.player1, 1);
+		this.spawnPlayer(this.player2, 2);
 //		this.spawnPeople ();
 
 		SoundManager.instance.startNewLevel ();
@@ -84,7 +86,8 @@ public class GameManager : MonoBehaviour {
 			Destroy (person);
 		}
 
-		Destroy (this.player);
+		Destroy (this.player1);
+		Destroy (this.player2);
 	}
 
 
@@ -118,11 +121,14 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	private void spawnPlayer() {
-		Debug.Log("Spawning player!");
+	private void spawnPlayer(GameObject player, int playerNumber) {
+		Debug.Log("Spawning player" + playerNumber );
 
-		this.player = (GameObject)Instantiate(playerPrefab);
-		this.player.GetComponent<Rigidbody2D>().position = new Vector2(0,-1.5f);
+		if (player == null) {
+			player = (GameObject)Instantiate(playerPrefab);
+		}
+		player.GetComponent<PlayerScript> ().playerNumber = playerNumber;
+		player.GetComponent<Rigidbody2D>().position = new Vector2(0,-1.5f*playerNumber);
 
 	}
 	
