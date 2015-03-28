@@ -13,7 +13,8 @@ public class PlayerScript : MonoBehaviour {
 
 	public int punchDuration = 25;
 	public int coolDownDuration = 35;
-	public GameObject fistPrefab;	
+	public GameObject fistPrefab;
+	public GameObject laserPrefab;
 	public AudioClip swingSound;
 	
 	public AudioSource audioSource;
