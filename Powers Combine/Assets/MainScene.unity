@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5849ab97319e540919fa0a3e8946d3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: 87d840e4fbcf948728df1e866cabf6ca, type: 3}
+  music: {fileID: 8300000, guid: fdf5512416b0f44f594b7c18b8d26960, type: 3}
   chaseMusic: {fileID: 8300000, guid: fdf5512416b0f44f594b7c18b8d26960, type: 3}
   loseMusic: {fileID: 8300000, guid: 4cebb0337b14346128e81717d1cd9da2, type: 3}
   winMusic: {fileID: 8300000, guid: 7b0b108783294494ba5aab645313b6e0, type: 3}
