@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public float widthOfLevel;
 	public float heightOfLevel;
 	public int numberOfPeople;
+	public float introDelay;
 
 	public List<GameObject> peopleRefs;
 	public GameObject player;
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		if (!this.gameStarted 
 		    && Input.GetKeyDown (KeyCode.Space)
-		    && (Time.time - this.timeSinceLevelChange) > 5.0f) {
+		    && (Time.time - this.timeSinceLevelChange) > introDelay) {
 			this.startNewLevel();
 		}
 	}
