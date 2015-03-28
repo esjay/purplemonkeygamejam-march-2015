@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 
+	public string playerControllerPrefix;
 	public float maxSpeed = 0.1f;
 	private Animator animator;
 	private Vector2 lastPos;
@@ -21,6 +22,7 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		this.playerControllerPrefix = "Player1_"; // TEMP
 		animator = this.GetComponent<Animator>();
 		lastPos = GetComponent<Rigidbody2D>().position;
 		this.fist = (GameObject)Instantiate (fistPrefab);
@@ -34,8 +36,8 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void doMovement () {
-		float w = Input.GetAxis ("Horizontal");
-		float h = Input.GetAxis ("Vertical");
+		float w = Input.GetAxis (this.playerControllerPrefix + "Horizontal");
+		float h = Input.GetAxis (this.playerControllerPrefix + "Vertical");
 		float distance = Mathf.Sqrt (Mathf.Pow (h, 2) + Mathf.Pow (w, 2));
 		float direction = Mathf.Atan2 (h, w);
 		
