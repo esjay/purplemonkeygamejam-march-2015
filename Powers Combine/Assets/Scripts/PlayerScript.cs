@@ -35,10 +35,12 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void doMovement () {
-		Debug.Log ("Player" + this.playerNumber + "_Horizontal");
+
+		// Player Movement
+//		Debug.Log ("Player" + this.playerNumber + "_Horizontal");
 		float w = Input.GetAxis ("Player" + this.playerNumber + "_Horizontal");
 		float h = Input.GetAxis ("Player" + this.playerNumber + "_Vertical");
-		Debug.Log (w + ", " + h);
+//		Debug.Log (w + ", " + h);
 		float distance = Mathf.Sqrt (Mathf.Pow (h, 2) + Mathf.Pow (w, 2));
 		float direction = Mathf.Atan2 (h, w);
 		
@@ -50,6 +52,12 @@ public class PlayerScript : MonoBehaviour {
 		GetComponent<Rigidbody2D>().MovePosition(next);	
 		
 		applyAnimationFromMovement (-w, -h);
+
+		// Player Direction
+		float x = Input.GetAxis ("Player" + this.playerNumber + "_AimHorizontal");
+		float y = Input.GetAxis ("Player" + this.playerNumber + "_AimVertical");
+		Debug.Log (x + ", " + y);
+		transform.rotation = Quaternion.Euler(0f,0f,Mathf.Atan2(x,y)*Mathf.Rad2Deg);
 	}
 
 	void doActions () {
