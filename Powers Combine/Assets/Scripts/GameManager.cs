@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour {
 			Debug.LogError("Only one copy of gamemanager allowed!");
 		}
 		this.gameStarted = false;
-		this.timeSinceLevelChange = Time.time;
 		this.currentScore = 0;
 	}
 
@@ -56,14 +55,11 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-
-
 	private void startNewLevel (){
 		this.clearScreen ();
 
 		this.spawnPlayer();
 		this.spawnPeople ();
-		this.spawnWerewolf ();
 
 		SoundManager.instance.startNewLevel ();
 		UIManager.instance.startNewLevel ();
@@ -80,6 +76,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void clearScreen () {
+		// TODO: get rid of enemies.
 		while (this.peopleRefs.Count > 0) {
 			GameObject person = this.peopleRefs [0];
 			this.peopleRefs.RemoveAt (0);
@@ -87,7 +84,6 @@ public class GameManager : MonoBehaviour {
 		}
 
 		Destroy (this.player);
-		Destroy (this.werewolf);
 	}
 
 
@@ -101,12 +97,10 @@ public class GameManager : MonoBehaviour {
 
 	public void showLoseScreen () {
 		this.endLevel ();
-		BackgroundManager.instance.showLose ();
-		SoundManager.instance.playLoseMusic ();
 	}
 
 
-
+	// TODO: change this to enemies. add this to "update fixed"
 	private void spawnPeople() {
 		Debug.Log ("Spawning " + this.numberOfPeople + " people.");
 		for (int i = 0; i < this.numberOfPeople; ++i) {
@@ -130,15 +124,7 @@ public class GameManager : MonoBehaviour {
 		this.player.GetComponent<Rigidbody2D>().position = new Vector2(0,-1.5f);
 
 	}
-
-	private void spawnWerewolf () {
-		Debug.Log ("Spawning Werewolf");
-
-		this.werewolf = (GameObject)Instantiate (werewolfPrefab);
-		this.werewolf.GetComponent<Rigidbody2D>().position = findRandomPointOnMap ();
-	}
-
-
+	
 	public static Vector2 findRandomPointOnMap() {
 		return new Vector2(Random.Range(-GameManager.instance.widthOfLevel, GameManager.instance.widthOfLevel),
 		                   Random.Range(-GameManager.instance.heightOfLevel + 1.2f, GameManager.instance.heightOfLevel - 1.1f));
