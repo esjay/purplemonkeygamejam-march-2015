@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour {
 
 	public int playerNumber;
+	public Sprite firstPlayerSprite;
+	public Sprite secondPlayerSprite;
 	public float maxSpeed = 0.1f;
 	private Animator animator;
 	private Vector2 lastPos;
@@ -22,6 +24,9 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		GetComponent<SpriteRenderer> ().sprite = playerNumber == 1 ? 
+			(Sprite)Instantiate (this.firstPlayerSprite) : (Sprite)Instantiate (this.secondPlayerSprite);
 		animator = this.GetComponent<Animator>();
 		lastPos = GetComponent<Rigidbody2D>().position;
 		this.fist = (GameObject)Instantiate (fistPrefab);
@@ -65,30 +70,13 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void doActions () {
-//		bool isPunching;
-//		bool isPunchRequested;
-//		bool isStateChange;
-//
-//		isPunchRequested = Input.GetKeyDown (KeyCode.Space);
-//		if (!this.isPunching && isPunchRequested) {
-//			this.isPunching = true;
-//			this.beginPunch ();
-//			this.punchingSince = Time.frameCount;
-//			applyAnimationFromState(true);
-//		}
-//
-//		int punchingFor = 0;
-//		if (this.isPunching) {
-//			punchingFor = Time.frameCount - this.punchingSince;
-//		}
-//
-//		if (punchingFor > this.punchDuration) {
-//			this.endPunch ();
-//			applyAnimationFromState(false);
-//		}
-//		if (punchingFor > this.coolDownDuration) {
-//			this.isPunching = false;
-//		}
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			GameObject projectile = (GameObject)Instantiate(this.laserPrefab);
+			projectile.transform.position = new Vector3(Random.Range(-5,5), Random.Range(-5,5), 0);
+//			GetComponent<SpriteRenderer> ().sprite = playerNumber == 1 ? 
+//				(Sprite)Instantiate (this.firstPlayerSprite) : (Sprite)Instantiate (this.secondPlayerSprite);
+//			projectile.setDirection();
+		}
 	}
 
 	void beginPunch () {
