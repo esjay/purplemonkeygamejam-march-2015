@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour {
 		this.gameStarted = false;
 	}
 
+
+
 	private void clearScreen () {
 		// TODO: get rid of enemies.
 		while (this.peopleRefs.Count > 0) {
@@ -90,12 +92,10 @@ public class GameManager : MonoBehaviour {
 		Destroy (this.player2);
 	}
 
-
+	// Screen Transitions
 	public void showWinScreen () {
 		this.endLevel ();
-		this.currentScore++;
 		BackgroundManager.instance.showWin ();
-		UIManager.instance.setScore(this.currentScore);
 		SoundManager.instance.playWinMusic ();
 	}
 
@@ -136,6 +136,10 @@ public class GameManager : MonoBehaviour {
 		return new Vector2(Random.Range(-GameManager.instance.widthOfLevel, GameManager.instance.widthOfLevel),
 		                   Random.Range(-GameManager.instance.heightOfLevel + 1.2f, GameManager.instance.heightOfLevel - 1.1f));
 	}
+
+
+
+
 }
 
 

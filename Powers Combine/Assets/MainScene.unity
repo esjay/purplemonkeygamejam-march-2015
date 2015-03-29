@@ -98,7 +98,7 @@ GameObject:
   - 132: {fileID: 338109562}
   - 114: {fileID: 338109561}
   m_Layer: 0
-  m_Name: UIGameTimer
+  m_Name: UIScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,9 +113,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 338109560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76da1604622d7473fb05a5c99510d14c, type: 3}
+  m_Script: {fileID: 11500000, guid: cedee128a041f47389e1a1b4a49f071e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 338109562}
 --- !u!132 &338109562
 GUIText:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ GUIText:
   m_GameObject: {fileID: 338109560}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 85.00
+  m_Text: 0
   m_Anchor: 4
   m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
@@ -246,7 +247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &835472832
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,8 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedee128a041f47389e1a1b4a49f071e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 338109561}
-  scoreText: {fileID: 1247859752}
+  scoreText: {fileID: 338109562}
 --- !u!4 &835472835
 Transform:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1001 &843178755
 Prefab:
   m_ObjectHideFlags: 0
@@ -373,57 +373,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfafba095c0b447698a9c22eebe04260, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1247859751
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1247859753}
-  - 132: {fileID: 1247859752}
-  m_Layer: 0
-  m_Name: UIScoreText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!132 &1247859752
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1247859751}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 'Lives Changed: 0'
-  m_Anchor: 5
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 12800000, guid: 6eb062eec30a948fc94bf3299668304f, type: 3}
-  m_Material: {fileID: 0}
-  m_FontSize: 15
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
---- !u!4 &1247859753
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1247859751}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .99000001, y: .949999988, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1001 &1378280911
 Prefab:
   m_ObjectHideFlags: 0
@@ -798,7 +747,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!82 &2131368914
 AudioSource:
   m_ObjectHideFlags: 0

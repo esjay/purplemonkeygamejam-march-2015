@@ -6,7 +6,6 @@ public class UIManager : MonoBehaviour {
 	public static UIManager instance;
 
 	// UI Elements
-	public UITimer timer;
 	public GUIText scoreText;
 
 	void Awake () {
@@ -15,9 +14,8 @@ public class UIManager : MonoBehaviour {
 		if (instance == null) {
 			instance = this;
 		} else {
-			Debug.LogError("Only one copy of gamemanager allowed!");
+			Debug.LogError("Only one copy of ui manager allowed!");
 		}
-		timer.GetComponent<GUIText>().enabled = false;
 		scoreText.enabled = false;
 	}
 
@@ -31,20 +29,20 @@ public class UIManager : MonoBehaviour {
 		
 	}
 
+	public void changeScoreByAmount( int amount) 
+	{
+		scoreText.text += amount;
+	}
+
 	public void setScore (int score) {
-		scoreText.text = "Lives Changed: " + score;
+		scoreText.text = score.ToString();
 	}
 
 	public void startNewLevel () {
-		timer.resetTimer ();
-		timer.GetComponent<GUIText>().enabled = true;
 		scoreText.enabled = true;
-		timer.startTimer();
 	}
 
 	public void endLevel () {
-		timer.stopTimer ();
-		timer.GetComponent<GUIText>().enabled = false;
 		scoreText.enabled = false;
 	}
 }

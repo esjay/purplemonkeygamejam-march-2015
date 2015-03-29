@@ -16,7 +16,6 @@ public class PlayerScript : MonoBehaviour {
 	public int coolDownDuration = 35;
 	public GameObject fistPrefab;
 	public GameObject laserPrefab;
-	public int bulletSpeed = 300;
 	public AudioClip swingSound;
 	
 	public AudioSource audioSource;
@@ -33,6 +32,7 @@ public class PlayerScript : MonoBehaviour {
 		doMovement ();
 		doActions ();
 		updateFistPos ();
+		UIManager.instance.changeScoreByAmount (10);
 	}
 
 	void doMovement () {
@@ -66,40 +66,29 @@ public class PlayerScript : MonoBehaviour {
 
 	void doActions () {
 //		bool isPunching;
-		bool isPunchRequested;
+//		bool isPunchRequested;
 //		bool isStateChange;
 //
-		isPunchRequested = Input.GetKeyDown (KeyCode.Space);
-		if (!this.isPunching && isPunchRequested) {
-			this.isPunching = true;
+//		isPunchRequested = Input.GetKeyDown (KeyCode.Space);
+//		if (!this.isPunching && isPunchRequested) {
+//			this.isPunching = true;
 //			this.beginPunch ();
-			this.punchingSince = Time.frameCount;
-			applyAnimationFromState(true);
-			fire();
-		}
+//			this.punchingSince = Time.frameCount;
+//			applyAnimationFromState(true);
+//		}
 //
-		int punchingFor = 0;
-		if (this.isPunching) {
-			punchingFor = Time.frameCount - this.punchingSince;
-		}
+//		int punchingFor = 0;
+//		if (this.isPunching) {
+//			punchingFor = Time.frameCount - this.punchingSince;
+//		}
 //
 //		if (punchingFor > this.punchDuration) {
 //			this.endPunch ();
 //			applyAnimationFromState(false);
 //		}
-		if (punchingFor > this.coolDownDuration) {
-			this.isPunching = false;
-		}
-	}
-
-	void fire() {
-		Rigidbody2D clone;
-		clone = Instantiate(laserPrefab, transform.position, transform.rotation) as Rigidbody2D;
-		clone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-//		clone.AddForce(transform.up * bulletSpeed);
-
-//		Rigidbody2D projectileInstance = (Rigidbody2D)Instantiate (laserPrefab, new Vector2(transform.position.x + xValue, transform.position.y + yValue));
-//		projectileInstance.GetComponent<Rigidbody2D>().AddForce(transform.up * bulletSpeed);
+//		if (punchingFor > this.coolDownDuration) {
+//			this.isPunching = false;
+//		}
 	}
 
 	void beginPunch () {
@@ -114,6 +103,7 @@ public class PlayerScript : MonoBehaviour {
 		this.fist.GetComponent<Renderer>().enabled = false;
 	}
 
+	// Keep for potential use later.
 	void applyAnimationFromMovement (float w, float h) {
 		Vector2 currentPos;
 		
