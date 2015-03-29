@@ -6,6 +6,8 @@ public class PlayerScript : MonoBehaviour {
 	public int playerNumber;
 	public Sprite firstPlayerSprite;
 	public Sprite secondPlayerSprite;
+	public Sprite firstPlayerLaserSprite;
+	public Sprite secondPlayerLaserSprite;
 	public float maxSpeed = 0.1f;
 	private Animator animator;
 	private Vector2 lastPos;
@@ -19,6 +21,8 @@ public class PlayerScript : MonoBehaviour {
 	public GameObject fistPrefab;
 	public GameObject laserPrefab;
 	public AudioClip swingSound;
+
+	private bool mustResetTrigger = false;
 	
 	public AudioSource audioSource;
 
@@ -78,26 +82,31 @@ public class PlayerScript : MonoBehaviour {
 
 	void doActions () {
 		float trigger = Input.GetAxis ("Player" + this.playerNumber + "_RightTrigger");
-		Debug.Log (trigger);
-		if (trigger < 0) {
+		if (trigger < 0 && !mustResetTrigger) {
+			mustResetTrigger = true;
+			GameObject projectile = (GameObject)Instantiate (this.laserPrefab);
+			projectile.GetComponent<ProjectileController>().setPlayer(this.playerNumber);
+			projectile.GetComponent<SpriteRenderer> ().sprite = playerNumber == 1 ? 
+				(Sprite)Instantiate (this.firstPlayerLaserSprite) : (Sprite)Instantiate (this.secondPlayerLaserSprite);
 
-			GameObject projectile = (GameObject)Instantiate(this.laserPrefab);
 //			Vector3 offsetVector = new Vector3(GetComponent<Rigidbody2D>().ro
 			projectile.transform.position = transform.position;
 
 			Vector2 movement = new Vector2 (1 * Mathf.Cos (this.currentDirection),
 			                                1 * Mathf.Sin (this.currentDirection));
 			
-			Vector2 next = GetComponent<Rigidbody2D>().position + movement;
-			projectile.GetComponent<Rigidbody2D>().MovePosition(next);	
+			Vector2 next = GetComponent<Rigidbody2D> ().position + movement;
+			projectile.GetComponent<Rigidbody2D> ().MovePosition (next);	
 			
 
 
 			projectile.transform.rotation = transform.rotation;
-			projectile.GetComponent<ProjectileController>().direction = this.currentDirection;
+			projectile.GetComponent<ProjectileController> ().direction = this.currentDirection;
 
-			Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
+			Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), this.GetComponent<Collider2D> ());
 
+		} else if (trigger > 0) {
+			mustResetTrigger = false;
 		}
 	}
 

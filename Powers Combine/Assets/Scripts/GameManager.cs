@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
 
 		this.spawnPlayer(this.player1, 1);
 		this.spawnPlayer(this.player2, 2);
-//		this.spawnPeople ();
+		this.spawnPeople ();
 
 		SoundManager.instance.startNewLevel ();
 		UIManager.instance.startNewLevel ();

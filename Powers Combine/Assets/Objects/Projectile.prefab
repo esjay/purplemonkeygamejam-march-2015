@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70666dd1496643aba0adb702c3edd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstPlayerAudio: {fileID: 8300000, guid: 6b8c5f41bc75848bf88a7a5964540da8, type: 3}
+  secondPlayerAudio: {fileID: 8300000, guid: 8a78a3e7639694d8f895e8c9c5bab829, type: 3}
   direction: 0
 --- !u!212 &21248722
 SpriteRenderer:

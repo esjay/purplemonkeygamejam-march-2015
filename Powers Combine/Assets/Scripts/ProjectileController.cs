@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ProjectileController : MonoBehaviour {
 
+	public AudioClip firstPlayerAudio, secondPlayerAudio;
 	public float direction;
 	private float x, y;
 
@@ -33,5 +34,21 @@ public class ProjectileController : MonoBehaviour {
 //		GetComponent<Rigidbody2D> ().AddForce (new Vector2 (50, 50));
 		GetComponent<Rigidbody2D> ().velocity = movement * 2;
 //		GetComponent<Rigidbody2D> ().rotation = 90;
+
+
+		if ((GetComponent<Rigidbody2D> ().position.x > 20 || GetComponent<Rigidbody2D> ().position.x < -20) 
+		    || (GetComponent<Rigidbody2D> ().position.y > 20 || GetComponent<Rigidbody2D> ().position.y < -20)) 
+		{
+			Debug.Log ("Destroying Projectile");
+			Destroy (this);
+		}
+	}
+
+	public void setPlayer (int player) {
+		if (player == 1) {
+			GetComponent<AudioSource>().clip = firstPlayerAudio;
+		} else {
+			GetComponent<AudioSource>().clip = secondPlayerAudio;
+		}
 	}
 }

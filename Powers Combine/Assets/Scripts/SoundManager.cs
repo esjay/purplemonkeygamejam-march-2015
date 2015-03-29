@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour {
 	public static SoundManager instance;
 
 	public AudioClip music;
+	public AudioClip menuMusic;
 	public AudioClip chaseMusic;
 	public AudioClip loseMusic;
 	public AudioClip winMusic;
@@ -29,6 +30,7 @@ public class SoundManager : MonoBehaviour {
 
 		this.isPaused = true;
 
+		
 	}
 	
 	// Update is called once per frame
@@ -47,6 +49,9 @@ public class SoundManager : MonoBehaviour {
 
 			// Do nothing if no more sound is available.
 
+		} else {
+			this.audioSource.clip = this.menuMusic;
+			this.audioSource.Play ();
 		}
 	}
 

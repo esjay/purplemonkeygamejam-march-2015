@@ -126,6 +126,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 11437380, guid: 2d81d53b3fa6e4606a72e6df5d523ae0, type: 2}
+      propertyPath: introBackground
+      value: 
+      objectReference: {fileID: 21300000, guid: 44eccd644c68840e99be4583ba35ce8b,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d81d53b3fa6e4606a72e6df5d523ae0, type: 2}
   m_IsPrefabParent: 0
@@ -270,9 +275,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStarted: 0
-  widthOfLevel: 5
-  heightOfLevel: 3.5
-  numberOfPeople: 50
+  widthOfLevel: 8
+  heightOfLevel: 5
+  numberOfPeople: 10
   introDelay: 1
   peopleRefs: []
   player1: {fileID: 0}
@@ -716,7 +721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5849ab97319e540919fa0a3e8946d3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: fdf5512416b0f44f594b7c18b8d26960, type: 3}
+  music: {fileID: 8300000, guid: 700fd25943bc3439897417b9d2b8d6b7, type: 3}
+  menuMusic: {fileID: 8300000, guid: 211025fd4c4464ab4915b7d1a19e51f2, type: 3}
   chaseMusic: {fileID: 8300000, guid: fdf5512416b0f44f594b7c18b8d26960, type: 3}
   loseMusic: {fileID: 8300000, guid: 4cebb0337b14346128e81717d1cd9da2, type: 3}
   winMusic: {fileID: 8300000, guid: 7b0b108783294494ba5aab645313b6e0, type: 3}
