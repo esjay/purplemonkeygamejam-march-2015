@@ -77,7 +77,9 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void doActions () {
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		float trigger = Input.GetAxis ("Player" + this.playerNumber + "_RightTrigger");
+		Debug.Log (trigger);
+		if (trigger < 0) {
 
 			GameObject projectile = (GameObject)Instantiate(this.laserPrefab);
 //			Vector3 offsetVector = new Vector3(GetComponent<Rigidbody2D>().ro
@@ -95,19 +97,7 @@ public class PlayerScript : MonoBehaviour {
 			projectile.GetComponent<ProjectileController>().direction = this.currentDirection;
 
 			Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
-//			Vector3 rotation = GetComponent<Rigidbody2D>().transform.rotation.;
-//			offset.z = 0;
 
-//			Vector3 movement = new Vector3 (1 * Mathf.Cos (this.currentDirection),
-//			                                1 * Mathf.Sin (this.currentDirection),
-//			                                0);
-//			projectile.transform.position = projectile.transform.position + movement;// + offset*2;
-//			Debug.Log (offsetVector.x + ", " + offsetVector.y);
-//			Vector2 movement = new Vector2 (distance * Mathf.Cos (direction),
-//			                                distance * Mathf.Sin (direction));
-//			GetComponent<SpriteRenderer> ().sprite = playerNumber == 1 ? 
-//				(Sprite)Instantiate (this.firstPlayerSprite) : (Sprite)Instantiate (this.secondPlayerSprite);
-//			projectile.setDirection();
 		}
 	}
 
