@@ -29,12 +29,7 @@ public class UIManager : MonoBehaviour {
 		
 	}
 
-	public void changeScoreByAmount( int amount) 
-	{
-		scoreText.text += amount;
-	}
-
-	public void setScore (int score) {
+	public void setScoreTextWithScore (int score) {
 		scoreText.text = score.ToString();
 	}
 

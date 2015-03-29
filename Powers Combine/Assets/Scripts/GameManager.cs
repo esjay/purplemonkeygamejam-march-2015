@@ -138,8 +138,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-
+	public void changeScoreByAmount( int amount) 
+	{
+		this.currentScore += amount;
+		UIManager.instance.setScoreTextWithScore (this.currentScore);
+	}
 
 }
-
-

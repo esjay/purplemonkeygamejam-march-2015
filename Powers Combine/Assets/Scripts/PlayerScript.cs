@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour {
 		doMovement ();
 		doActions ();
 		updateFistPos ();
-		UIManager.instance.changeScoreByAmount (10);
+		GameManager.instance.changeScoreByAmount (10);
 	}
 
 	void doMovement () {
