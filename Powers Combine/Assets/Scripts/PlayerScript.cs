@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour {
 	public float maxSpeed = 0.1f;
 	private Animator animator;
 	private Vector2 lastPos;
-	private int currentDirection = 0;
+	private float currentDirection = 0.0f;
 	private bool isPunching = false;
 	private int punchingSince;
 	private GameObject fist;
@@ -29,6 +29,7 @@ public class PlayerScript : MonoBehaviour {
 			(Sprite)Instantiate (this.firstPlayerSprite) : (Sprite)Instantiate (this.secondPlayerSprite);
 		animator = this.GetComponent<Animator>();
 		lastPos = GetComponent<Rigidbody2D>().position;
+
 		this.fist = (GameObject)Instantiate (fistPrefab);
 		this.endPunch ();
 	}
@@ -49,7 +50,9 @@ public class PlayerScript : MonoBehaviour {
 //		Debug.Log (w + ", " + h);
 		float distance = Mathf.Sqrt (Mathf.Pow (h, 2) + Mathf.Pow (w, 2));
 		float direction = Mathf.Atan2 (h, w);
-		
+//		Debug.Log ("direction:" + direction);
+
+
 		distance = Mathf.Min (distance, maxSpeed);
 		Vector2 movement = new Vector2 (distance * Mathf.Cos (direction),
 		                                distance * Mathf.Sin (direction));
@@ -62,17 +65,46 @@ public class PlayerScript : MonoBehaviour {
 		// Player Direction
 		float x = Input.GetAxis ("Player" + this.playerNumber + "_AimHorizontal");
 		float y = Input.GetAxis ("Player" + this.playerNumber + "_AimVertical");
+		distance = Mathf.Sqrt (Mathf.Pow (y, 2) + Mathf.Pow (-x, 2));
+		direction = Mathf.Atan2 (y, -x);
+
 //		Debug.Log (x + ", " + y);
-		if (Mathf.Abs(x) > 0.01 && Mathf.Abs (y) > 0.01) {
+		if (Mathf.Abs(x) > 0.01 || Mathf.Abs (y) > 0.01) {
 			transform.rotation = Quaternion.Euler (0f, 0f, Mathf.Atan2 (x, y) * Mathf.Rad2Deg);
-			Debug.Log (transform.rotation);
+			this.currentDirection = direction;
+//			Debug.Log (transform.rotation);
 		}
 	}
 
 	void doActions () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
+
 			GameObject projectile = (GameObject)Instantiate(this.laserPrefab);
-			projectile.transform.position = new Vector3(Random.Range(-5,5), Random.Range(-5,5), 0);
+//			Vector3 offsetVector = new Vector3(GetComponent<Rigidbody2D>().ro
+			projectile.transform.position = transform.position;
+
+			Vector2 movement = new Vector2 (1 * Mathf.Cos (this.currentDirection),
+			                                1 * Mathf.Sin (this.currentDirection));
+			
+			Vector2 next = GetComponent<Rigidbody2D>().position + movement;
+			projectile.GetComponent<Rigidbody2D>().MovePosition(next);	
+			
+
+
+			projectile.transform.rotation = transform.rotation;
+			projectile.GetComponent<ProjectileController>().direction = this.currentDirection;
+
+			Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
+//			Vector3 rotation = GetComponent<Rigidbody2D>().transform.rotation.;
+//			offset.z = 0;
+
+//			Vector3 movement = new Vector3 (1 * Mathf.Cos (this.currentDirection),
+//			                                1 * Mathf.Sin (this.currentDirection),
+//			                                0);
+//			projectile.transform.position = projectile.transform.position + movement;// + offset*2;
+//			Debug.Log (offsetVector.x + ", " + offsetVector.y);
+//			Vector2 movement = new Vector2 (distance * Mathf.Cos (direction),
+//			                                distance * Mathf.Sin (direction));
 //			GetComponent<SpriteRenderer> ().sprite = playerNumber == 1 ? 
 //				(Sprite)Instantiate (this.firstPlayerSprite) : (Sprite)Instantiate (this.secondPlayerSprite);
 //			projectile.setDirection();
@@ -136,7 +168,7 @@ public class PlayerScript : MonoBehaviour {
 			this.currentDirection = direction;
 		}
 		
-		setAnimationState (this.currentDirection, isMoving);
+//		setAnimationState (this.currentDirection, isMoving);
 	}
 
 	void updateFistPos () {

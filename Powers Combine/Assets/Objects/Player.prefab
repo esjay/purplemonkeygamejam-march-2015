@@ -149,12 +149,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  firstPlayerSprite: {fileID: 21300000, guid: 88476bbef04b04e4786e79bf134f4b1c, type: 3}
+  secondPlayerSprite: {fileID: 21300000, guid: 15c8c0e7f12784a47b288de2e32fa95a, type: 3}
   maxSpeed: .0500000007
   punchDuration: 25
   coolDownDuration: 35
   fistPrefab: {fileID: 100000, guid: aa265f9759ce3451f8d1d27dfdaec55b, type: 2}
   laserPrefab: {fileID: 164712, guid: 2b79ad681501e4e308406011c559968e, type: 2}
-  bulletSpeed: 300
   swingSound: {fileID: 8300000, guid: 288b8e22a60434da887948eb3ac33e30, type: 3}
   audioSource: {fileID: 8200000}
 --- !u!114 &11439152
